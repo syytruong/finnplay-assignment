@@ -1,6 +1,8 @@
+# Finnplay
 
-# Project use node version
-    v20.16.0
+## Requirements
+- Node.js v20.16.0
+- pnpm
 
 # Step
 1. git clone

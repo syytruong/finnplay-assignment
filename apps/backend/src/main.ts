@@ -24,7 +24,6 @@ app.get('/api', (req, res) => {
   res.send({ message: 'Welcome to backend!' });
 });
 
-// Định nghĩa các route API ở đây
 app.post('/api/login', (req, res) => {
   const { username, password } = req.body;
   if ((username === 'player1' && password === 'player1') ||
@@ -37,7 +36,6 @@ app.post('/api/login', (req, res) => {
 });
 
 app.get('/api/games', (req, res) => {
-  // Lọc các game không thuộc nhóm nào
   const filteredGames = games.filter(game => game.groups && game.groups.length > 0);
   
   res.status(200).json(filteredGames);

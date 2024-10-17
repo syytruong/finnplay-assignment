@@ -1,13 +1,13 @@
-import { StrictMode } from 'react';
-import * as ReactDOM from 'react-dom/client';
-
+import React from 'react';
+import ReactDOM from 'react-dom';
 import App from './app/app';
+import axios from 'axios';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-root.render(
-  <StrictMode>
+axios.defaults.baseURL = 'http://localhost:3333';
+
+ReactDOM.render(
+  <React.StrictMode>
     <App />
-  </StrictMode>
+  </React.StrictMode>,
+  document.getElementById('root')
 );

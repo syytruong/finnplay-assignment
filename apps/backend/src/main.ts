@@ -1,15 +1,16 @@
-/**
- * This is not a production server yet!
- * This is only a minimal backend to get started.
- */
-
 import express, { Request, Response } from 'express';
 import * as path from 'path';
 import session from 'express-session';
 import { json } from 'body-parser';
+import cors from 'cors';
 import games from './../data/data.json';
 
 const app = express();
+
+app.use(cors({
+  origin: 'http://localhost:4200',
+  credentials: true
+}));
 
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 

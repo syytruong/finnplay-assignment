@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 const LoginContainer = styled.div`
   display: flex;
@@ -32,13 +33,14 @@ const Login: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
     try {
       const response = await axios.post('/api/login', { username, password });
       if (response.status === 200) {
         alert('Login successful');
-        // Redirect to the player view or handle successful login
+        navigate('/home');
       }
     } catch (err) {
       setError('Invalid credentials');

@@ -36,6 +36,14 @@ app.post('/api/login', (req: Request, res: Response): void => {
   }
 });
 
+app.get('/api/check-session', (req: Request, res: Response) => {
+  if (req.session.user) {
+    res.status(200).json({ loggedIn: true });
+  } else {
+    res.status(401).json({ loggedIn: false });
+  }
+});
+
 app.get('/api/games', (req: Request, res: Response) => {
   const { name, providers, groups } = req.query as {
     name?: string;

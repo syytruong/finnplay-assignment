@@ -3,9 +3,9 @@
  * This is only a minimal backend to get started.
  */
 
-import express from 'express';
+import express, { Request, Response } from 'express';
 import * as path from 'path';
-import  session from 'express-session';
+import session from 'express-session';
 import { json } from 'body-parser';
 import games from './../data/data.json';
 
@@ -20,11 +20,11 @@ app.use(session({
   saveUninitialized: true,
 }));
 
-app.get('/api', (req, res) => {
+app.get('/api', (req: Request, res: Response) => {
   res.send({ message: 'Welcome to backend!' });
 });
 
-app.post('/api/login', (req, res) => {
+app.post('/api/login', (req: Request, res: Response): void => {
   const { username, password } = req.body;
   if ((username === 'player1' && password === 'player1') ||
       (username === 'player2' && password === 'player2')) {
@@ -35,9 +35,32 @@ app.post('/api/login', (req, res) => {
   }
 });
 
-app.get('/api/games', (req, res) => {
-  const filteredGames = games.filter(game => game.groups && game.groups.length > 0);
-  
+app.get('/api/games', (req: Request, res: Response) => {
+  const { name, providers, groups } = req.query as {
+    name?: string;
+    providers?: string | string[];
+    groups?: string | string[];
+  };
+
+  let filteredGames = games;
+
+  if (name) {
+    filteredGames = filteredGames.filter(game => game.name.includes(name));
+  }
+
+  if (providers) {
+    const providerList = Array.isArray(providers) ? providers : [providers];
+    filteredGames = filteredGames.filter(game => providerList.includes(game.provider));
+  }
+
+  if (groups) {
+    const groupList = Array.isArray(groups) ? groups : [groups];
+    filteredGames = filteredGames.filter(game => game.groups.some(group => groupList.includes(group)));
+  }
+
+  // Filter out games that don't belong to any group
+  filteredGames = filteredGames.filter(game => game.groups && game.groups.length > 0);
+
   res.status(200).json(filteredGames);
 });
 

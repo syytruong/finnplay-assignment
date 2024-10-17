@@ -39,7 +39,6 @@ const Login: React.FC = () => {
     try {
       const response = await axios.post('/api/login', { username, password });
       if (response.status === 200) {
-        alert('Login successful');
         navigate('/home');
       }
     } catch (err) {

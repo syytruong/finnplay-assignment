@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "name": "Slot Mania",
+    "provider": "ProviderA",
+    "groups": ["Slots", "New Releases"]
+  },
+  {
+    "id": 2,
+    "name": "Blackjack Pro",
+    "provider": "ProviderB",
+    "groups": ["Table Games", "Popular"]
+  },
+  {
+    "id": 3,
+    "name": "Roulette Royale",
+    "provider": "ProviderC",
+    "groups": ["Table Games"]
+  },
+  {
+    "id": 4,
+    "name": "Mega Slots",
+    "provider": "ProviderA",
+    "groups": ["Slots", "Jackpot"]
+  },
+  {
+    "id": 5,
+    "name": "Poker Face",
+    "provider": "ProviderD",
+    "groups": ["Table Games", "Strategy"]
+  },
+  {
+    "id": 6,
+    "name": "Lucky Spin",
+    "provider": "ProviderE",
+    "groups": ["Slots", "Lucky"]
+  },
+  {
+    "id": 7,
+    "name": "Baccarat Bliss",
+    "provider": "ProviderF",
+    "groups": ["Table Games"]
+  },
+  {
+    "id": 8,
+    "name": "Dragon Slots",
+    "provider": "ProviderA",
+    "groups": ["Slots", "Asian Themed"]
+  },
+  {
+    "id": 9,
+    "name": "Fantasy Blackjack",
+    "provider": "ProviderB",
+    "groups": ["Table Games", "Fantasy"]
+  },
+  {
+    "id": 10,
+    "name": "Mystic Roulette",
+    "provider": "ProviderC",
+    "groups": ["Table Games", "Mystic"]
+  }
+]

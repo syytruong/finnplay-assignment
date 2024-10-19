@@ -2,8 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import logo from '../assets/img/logo.png'; // Adjust the path if necessary
-
+import logo from '../../assets/img/logo.png';
 const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;

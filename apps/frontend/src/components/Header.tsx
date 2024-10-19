@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import logo from '../assets/img/logo.png'; // Adjust the path if necessary
 
 const HeaderContainer = styled.div`
@@ -8,7 +9,6 @@ const HeaderContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 10px 40px;
-  background-color: #f8f9fa;
 `;
 
 const Logo = styled.img`
@@ -34,15 +34,21 @@ const ProfileIcon = styled.div`
 
 const LogoutText = styled.span`
   font-size: 16px;
-  color: #000;
 `;
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    // Perform logout logic here
-    navigate('/login');
+  const handleLogout = async () => {
+    try {
+      const response = await axios.post('/api/logout');
+      console.log(response);
+      if (response.status === 200) {
+        navigate('/login');
+      }
+    } catch (err) {
+      console.error('Logout failed', err);
+    }
   };
 
   return (

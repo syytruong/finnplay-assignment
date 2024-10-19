@@ -36,6 +36,15 @@ app.post('/api/login', (req: Request, res: Response): void => {
   }
 });
 
+app.post('/api/logout', (req: Request, res: Response): void => {
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(500).json({ message: 'Logout failed' });
+    }
+    res.status(200).json({ message: 'Logout successful' });
+  });
+});
+
 app.get('/api/check-session', (req: Request, res: Response) => {
   if (req.session.user) {
     res.status(200).json({ loggedIn: true });

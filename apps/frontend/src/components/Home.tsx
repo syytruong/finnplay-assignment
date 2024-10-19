@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Header from './Header';
 
 const HomeContainer = styled.div`
   display: flex;
@@ -11,9 +12,12 @@ const HomeContainer = styled.div`
 
 const Home: React.FC = () => {
   return (
-    <HomeContainer>
-      <h1>Welcome to the Home Page</h1>
-    </HomeContainer>
+    <>
+      <Header />
+      <HomeContainer>
+        <h1>Welcome to the Home Page</h1>
+      </HomeContainer>
+    </>
   );
 };
 

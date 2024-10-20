@@ -51,6 +51,8 @@ const GameName = styled.div`
 interface Game {
   id: number;
   name: string;
+  provider: string;
+  groups: string[];
   logo: string;
 }
 
@@ -60,6 +62,8 @@ interface GameListProps {
 
 const GameList: React.FC<GameListProps> = ({ columns }) => {
   const [games, setGames] = useState<Game[]>([]);
+  const [providers, setProviders] = useState<string[]>([]);
+  const [gameGroups, setGameGroups] = useState<string[]>([]);
   const images = [
     game1,
     game11,
@@ -77,16 +81,32 @@ const GameList: React.FC<GameListProps> = ({ columns }) => {
     const fetchGames = async () => {
       try {
         const response = await axios.get('/api/games');
-        const gamesWithImages = response.data.map((game: Game) => ({
-          ...game,
-          logo: images[Math.floor(Math.random() * images.length)],
-        }));
+        const providersSet = new Set<string>();
+        const groupsSet = new Set<string>();
+  
+        const gamesWithImages = response.data.map((game: Game) => {
+          providersSet.add(game.provider);
+          game.groups.forEach((group: string) => {
+            groupsSet.add(group);
+          });
+  
+          return {
+            ...game,
+            logo: images[Math.floor(Math.random() * images.length)],
+          };
+        });
+  
+        const providers = Array.from(providersSet);
+        const groups = Array.from(groupsSet);
+  
         setGames(gamesWithImages);
+        setProviders(providers);
+        setGameGroups(groups);
       } catch (err) {
         console.error('Failed to fetch games', err);
       }
     };
-
+  
     fetchGames();
   }, []);
 

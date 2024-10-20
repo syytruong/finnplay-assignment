@@ -9,7 +9,7 @@ const HomeContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  padding: 20px 40px;
+  padding: 20px 80px;
 `;
 
 const ContentContainer = styled.div`

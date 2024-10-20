@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const SearchToolsContainer = styled.div`
   width: 45%;
-  padding: 20px 40px;
+  padding: 20px 100px;
 `;
 
 const SearchTools: React.FC = () => {

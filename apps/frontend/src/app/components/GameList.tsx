@@ -2,17 +2,25 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import Logo from './Logo';
-import game1 from '../../assets/img/game1.jpeg';
-import game2 from '../../assets/img/game2.jpeg';
-import game3 from '../../assets/img/game3.jpg';
-import game4 from '../../assets/img/game4.png';
+import game1 from '../../assets/images/game-thumbnail-1.png';
+import game11 from '../../assets/images/game-thumbnail-1-1.png';
+import game12 from '../../assets/images/game-thumbnail-1-2.png';
+import game13 from '../../assets/images/game-thumbnail-1-3.png';
+import game14 from '../../assets/images/game-thumbnail-1-4.png';
+import game2 from '../../assets/images/game-thumbnail-2.png';
+import game21 from '../../assets/images/game-thumbnail-2-1.png';
+import game22 from '../../assets/images/game-thumbnail-2-2.png';
+import game23 from '../../assets/images/game-thumbnail-2-3.png';
+import game24 from '../../assets/images/game-thumbnail-2-4.png';
 
 const GamesContainer = styled.div<{ columns: number }>`
+  flex: 2;
   display: grid;
-  grid-template-columns: repeat(${props => props.columns}, 1fr);
+  grid-template-columns: repeat(${(props) => props.columns}, 1fr);
   gap: 20px;
-  width: 55%;
-  margin-top: 20px;
+  height: fit-content;
+  max-height: 100%;
+  overflow: auto;
 `;
 
 const GameItem = styled.div`
@@ -20,6 +28,7 @@ const GameItem = styled.div`
   flex-direction: column;
   align-items: start;
   position: relative;
+  width: 100%;
 
   &:hover .game-name {
     opacity: 1;
@@ -51,7 +60,18 @@ interface GameListProps {
 
 const GameList: React.FC<GameListProps> = ({ columns }) => {
   const [games, setGames] = useState<Game[]>([]);
-  const images = [game1, game2, game3, game4];
+  const images = [
+    game1,
+    game11,
+    game12,
+    game13,
+    game14,
+    game2,
+    game21,
+    game22,
+    game23,
+    game24,
+  ];
 
   useEffect(() => {
     const fetchGames = async () => {
@@ -59,7 +79,7 @@ const GameList: React.FC<GameListProps> = ({ columns }) => {
         const response = await axios.get('/api/games');
         const gamesWithImages = response.data.map((game: Game) => ({
           ...game,
-          logo: images[Math.floor(Math.random() * images.length)]
+          logo: images[Math.floor(Math.random() * images.length)],
         }));
         setGames(gamesWithImages);
       } catch (err) {

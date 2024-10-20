@@ -6,13 +6,17 @@ const LogoContainer = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
 `;
 
 const LogoImage = styled.img`
-  width: 180px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 10%;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: inherit;
 `;
 
 interface LogoProps {

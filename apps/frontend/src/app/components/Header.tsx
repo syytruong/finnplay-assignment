@@ -10,7 +10,7 @@ const HeaderContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 10px 80px;
-  background-color: #f8f9fa;
+  box-shadow: 0px -2px 18px 0px #8080801a;
 `;
 
 const Logo = styled.img`
@@ -23,7 +23,7 @@ const ProfileContainer = styled.div`
   cursor: pointer;
 `;
 
-const ProfileIcon = styled.div`
+const ProfileIcon = styled.span`
   width: 30px;
   height: 30px;
   background-color: #ccc;
@@ -59,7 +59,9 @@ const Header: React.FC = () => {
     <HeaderContainer>
       <Logo src={logo} alt="Logo" />
       <ProfileContainer onClick={handleLogout}>
-        <ProfileIcon>👤</ProfileIcon>
+        <ProfileIcon>
+          👤
+        </ProfileIcon>
         <LogoutText>Logout</LogoutText>
       </ProfileContainer>
     </HeaderContainer>

@@ -3,11 +3,14 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import logo from '../../assets/img/logo.png';
+import { useAuth } from '../AuthContext';
+
 const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 40px;
+  background-color: #f8f9fa;
 `;
 
 const Logo = styled.img`
@@ -37,13 +40,15 @@ const LogoutText = styled.span`
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
+  const { setIsLoggedIn } = useAuth();
 
   const handleLogout = async () => {
     try {
       const response = await axios.post('/api/logout');
-      console.log(response);
+
       if (response.status === 200) {
-        navigate('/login');
+        setIsLoggedIn(false);
+        navigate('/login', { replace: true });
       }
     } catch (err) {
       console.error('Logout failed', err);

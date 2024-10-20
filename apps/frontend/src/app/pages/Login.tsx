@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../AuthContext';
 
 const LoginContainer = styled.div`
   display: flex;
@@ -34,12 +35,15 @@ const Login: React.FC = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const { setIsLoggedIn } = useAuth();
 
   const handleLogin = async () => {
     try {
       const response = await axios.post('/api/login', { username, password });
+
       if (response.status === 200) {
-        navigate('/home');
+        setIsLoggedIn(true);
+        navigate('/home', { replace: true });
       }
     } catch (err) {
       setError('Invalid credentials');

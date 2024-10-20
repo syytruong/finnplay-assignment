@@ -8,8 +8,10 @@ const LogoContainer = styled.div`
 `;
 
 const LogoImage = styled.img`
-  width: 100px;
-  height: 100px;
+  width: 180px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10%;
 `;
 
 interface LogoProps {

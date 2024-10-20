@@ -1,13 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import Header from '../components/Header';
+import Logo from '../components/Logo';
+import logo from '../../assets/img/logo.png';
 
 const HomeContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
 `;
 
 const Home: React.FC = () => {
@@ -15,7 +16,7 @@ const Home: React.FC = () => {
     <>
       <Header />
       <HomeContainer>
-        <h1>Welcome to the Home Page</h1>
+        <Logo src={logo} alt='Example' />
       </HomeContainer>
     </>
   );

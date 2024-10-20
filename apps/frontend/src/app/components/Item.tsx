@@ -10,7 +10,6 @@ const ItemContainer = styled.div`
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  width: 200px; // Adjust the size as needed
 `;
 
 const ItemName = styled.div`

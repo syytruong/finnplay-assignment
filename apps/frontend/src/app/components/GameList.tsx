@@ -11,7 +11,6 @@ const GamesContainer = styled.div<{ columns: number }>`
   display: grid;
   grid-template-columns: repeat(${props => props.columns}, 1fr);
   gap: 20px;
-  width: 55%;
   margin-top: 20px;
 `;
 

@@ -5,6 +5,7 @@ const LogoContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 `;
 
 const LogoImage = styled.img`

@@ -3,5 +3,5 @@ export type Game = {
   name: string;
   provider: string;
   groups: string[];
-  logo?: string;
+  logo: string;
 };

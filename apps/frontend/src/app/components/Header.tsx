@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import logo from '../../assets/img/logo.png';
+import { FaRegUserCircle } from "react-icons/fa";
 import { useAuth } from '../AuthContext';
 
 const HeaderContainer = styled.div`
@@ -11,6 +12,10 @@ const HeaderContainer = styled.div`
   align-items: center;
   padding: 10px 80px;
   box-shadow: 0px -2px 18px 0px #8080801a;
+
+  @media (max-width: 380px) {
+    padding: 10px 20px;
+  }
 `;
 
 const Logo = styled.img`
@@ -21,17 +26,7 @@ const ProfileContainer = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
-`;
-
-const ProfileIcon = styled.span`
-  width: 30px;
-  height: 30px;
-  background-color: #ccc;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 10px;
+  color: #d03282;
 `;
 
 const LogoutText = styled.span`
@@ -59,9 +54,7 @@ const Header: React.FC = () => {
     <HeaderContainer>
       <Logo src={logo} alt="Logo" />
       <ProfileContainer onClick={handleLogout}>
-        <ProfileIcon>
-          👤
-        </ProfileIcon>
+        <FaRegUserCircle />&nbsp;
         <LogoutText>Logout</LogoutText>
       </ProfileContainer>
     </HeaderContainer>

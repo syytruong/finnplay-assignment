@@ -14,19 +14,38 @@ const SearchToolsContainer = styled.div`
   align-items: center;
   background-color: #fff;
 
+  @media (max-width: 380px) {
+    height: 48px;
+    padding: 0 8px;
+  }
+
   input {
     flex: 1;
     border: 0;
     font-size: 16px;
     font-weight: 400;
-    height: 19px;
-    line-height: 19px;
+    height: 40px;
+    line-height: 40 px;
     &:focus-visible {
       outline: 0;
     }
+
+    @media (max-width: 380px) {
+      height: 20px;
+      line-height: 20px;
+    }
+  }
+
+  svg {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+
+    @media (max-width: 380px) {
+      margin-left: -25px;
+    }
   }
 `;
-
 
 const SearchTools: React.FC = () => {
   const { searchTerm, setSearchTerm } = useFilter();

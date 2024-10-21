@@ -60,8 +60,8 @@ const Sidebar: React.FC = () => {
       <SearchTools />
       {showFilters && (
         <>
-          {window.innerWidth > 380 && <ColumnsSelector />}
           <Filters />
+          {window.innerWidth > 380 && <ColumnsSelector />}
           <FilterFooter />
         </>
       )}

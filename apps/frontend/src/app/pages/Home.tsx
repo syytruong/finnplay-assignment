@@ -32,8 +32,17 @@ const ContentContainer = styled.div`
 `;
 
 const Home: React.FC = () => {
-  const { setGameAmount, setGames } = useFilter();
-  const { searchTerm, selectedProviders, selectedGroups, setProviders, setGroups } = useFilter();
+  const { 
+    setGameAmount,
+    setGames,
+    searchTerm,
+    selectedProviders,
+    selectedGroups,
+    setProviders,
+    setGroups,
+    selectedSortOption,
+  } = useFilter();
+
   const images = [
     game1,
     game11,
@@ -80,8 +89,9 @@ const Home: React.FC = () => {
         const response = await axios.get('/api/games', {
           params: {
             search: searchTerm,
-            group: selectedGroups.join(','),
-            provider: selectedProviders.join(','),
+            groups: selectedGroups,
+            providers: selectedProviders,
+            sort: selectedSortOption,
           },
         });
 
@@ -98,7 +108,7 @@ const Home: React.FC = () => {
     };
 
     fetchGames();
-  }, [searchTerm, selectedGroups, selectedProviders]);
+  }, [searchTerm, selectedGroups, selectedProviders, selectedSortOption]);
 
   return (
     <>

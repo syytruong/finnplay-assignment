@@ -54,15 +54,14 @@ app.get('/api/check-session', (req: Request, res: Response) => {
 });
 
 app.get('/api/games', (req: Request, res: Response) => {
-  const { search, providers, groups } = req.query as {
+  const { search, providers, groups, sort } = req.query as {
     search?: string;
     providers?: string[];
     groups?: string[];
+    sort?: string;
   };
 
   let filteredGames = games;
-
-  console.log('search', search);
 
   if (search) {
     const searchLower = search.toLowerCase();
@@ -79,6 +78,20 @@ app.get('/api/games', (req: Request, res: Response) => {
 
   // Filter out games that don't belong to any group
   filteredGames = filteredGames.filter(game => game.groups && game.groups.length > 0);
+
+  switch (sort) {
+    case 'A-Z':
+      filteredGames.sort((a, b) => a.name.localeCompare(b.name));
+      break;
+    case 'Z-A':
+      filteredGames.sort((a, b) => b.name.localeCompare(a.name));
+      break;
+    case 'Newest':
+      // Since there is no date, just return the original order
+      break;
+    default:
+      break;
+  }
 
   res.status(200).json(filteredGames);
 });

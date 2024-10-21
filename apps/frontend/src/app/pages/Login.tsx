@@ -3,6 +3,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
+import logo from '../../assets/img/logo.png';
 
 const LoginContainer = styled.div`
   display: flex;
@@ -10,24 +11,66 @@ const LoginContainer = styled.div`
   align-items: center;
   justify-content: center;
   height: 100vh;
+
+  .login-form {
+    width: 412px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+
+    .col {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 428px) {
+    .login-form {
+      width: calc(100% - 48px);
+    }
+  }
+`;
+
+const Logo = styled.img`
+  height: 70px;
+  width: 70px;
 `;
 
 const Input = styled.input`
-  margin: 10px;
-  padding: 10px;
+  height: 64px;
+  border-radius: 4px;
+  border: 1px solid #f2f2f2;
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
 `;
 
 const Button = styled.button`
-  margin: 10px;
-  padding: 10px;
-  font-size: 16px;
+  height: 64px;
   cursor: pointer;
+  width: 100%;
+  background-color: #fdbc11;
+  border-radius: 4px;
+  box-shadow: 0px -2px 18px 0px #8080801a;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
 `;
 
 const ErrorMessage = styled.div`
   color: red;
-  margin: 10px;
+  padding: 10px;
+  height: 39px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
 `;
 
 const Login: React.FC = () => {
@@ -52,21 +95,25 @@ const Login: React.FC = () => {
 
   return (
     <LoginContainer>
-      <h1>Login</h1>
-      <Input
-        type="text"
-        placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <Input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <Button onClick={handleLogin}>Login</Button>
-      {error && <ErrorMessage>{error}</ErrorMessage>}
+      <form className="login-form" onSubmit={(e) => e.preventDefault()}>
+        <Logo src={logo} alt="Logo" />
+        <div className="col">
+          <Input
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <Input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <Button onClick={handleLogin}>Login</Button>
+        <ErrorMessage style={{ opacity: error ? 1 : 0 }}>{error}</ErrorMessage>
+      </form>
     </LoginContainer>
   );
 };

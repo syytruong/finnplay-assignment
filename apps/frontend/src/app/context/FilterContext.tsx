@@ -44,7 +44,7 @@ export const FilterProvider: React.FC<{ children: ReactNode }> = ({ children }) 
     setSelectedGroups([]);
     setSelectedSortOption('');
     setGameAmount(0);
-    setColumns(4);
+    setColumns(window.innerWidth <= 428 ? 2 : 4);
   };
 
   return (

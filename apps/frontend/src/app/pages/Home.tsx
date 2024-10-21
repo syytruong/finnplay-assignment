@@ -3,10 +3,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import Header from '../components/Header';
 import GameList from '../components/GameList';
-import SearchTools from '../components/SearchTools';
 import Sidebar from '../components/Sidebar';
-import Button from '../components/Button';
-import Filter from '../components/Filter';
 import game1 from '../../assets/images/game-thumbnail-1.png';
 import game11 from '../../assets/images/game-thumbnail-1-1.png';
 import game12 from '../../assets/images/game-thumbnail-1-2.png';
@@ -45,6 +42,9 @@ const Home: React.FC = () => {
   const [games, setGames] = useState<Game[]>([]);
   const [providers, setProviders] = useState<string[]>([]);
   const [gameGroups, setGameGroups] = useState<string[]>([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedGroup, setSelectedGroup] = useState<string | null>(null);
+  const [selectedProvider, setSelectedProvider] = useState<string | null>(null);
   const images = [
     game1,
     game11,
@@ -58,38 +58,59 @@ const Home: React.FC = () => {
     game24,
   ];
 
+  // Fetch providers and groups only once
   useEffect(() => {
-    const fetchGames = async () => {
+    const fetchProvidersAndGroups = async () => {
       try {
         const response = await axios.get('/api/games');
         const providersSet = new Set<string>();
         const groupsSet = new Set<string>();
 
-        const gamesWithImages = response.data.map((game: Game) => {
+        response.data.forEach((game: Game) => {
           providersSet.add(game.provider);
           game.groups.forEach((group: string) => {
             groupsSet.add(group);
           });
-
-          return {
-            ...game,
-            logo: images[Math.floor(Math.random() * images.length)],
-          };
         });
 
         const providers = Array.from(providersSet);
         const groups = Array.from(groupsSet);
 
-        setGames(gamesWithImages);
         setProviders(providers);
         setGameGroups(groups);
+      } catch (err) {
+        console.error('Failed to fetch providers and groups', err);
+      }
+    };
+
+    fetchProvidersAndGroups();
+  }, []);
+
+  // Fetch games based on search term, selected group, and selected provider
+  useEffect(() => {
+    const fetchGames = async () => {
+      try {
+        const response = await axios.get('/api/games', {
+          params: {
+            search: searchTerm,
+            group: selectedGroup,
+            provider: selectedProvider,
+          },
+        });
+
+        const gamesWithImages = response.data.map((game: Game) => ({
+          ...game,
+          logo: images[Math.floor(Math.random() * images.length)],
+        }));
+
+        setGames(gamesWithImages);
       } catch (err) {
         console.error('Failed to fetch games', err);
       }
     };
 
     fetchGames();
-  }, []);
+  }, [searchTerm, selectedGroup, selectedProvider]);
 
   return (
     <>

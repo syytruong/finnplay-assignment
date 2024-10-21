@@ -125,7 +125,7 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth <= 380) {
+      if (window.innerWidth <= 428) {
         setColumns(2);
       } else {
         setColumns(4);
@@ -145,7 +145,7 @@ const Home: React.FC = () => {
       <Header />
       <HomeContainer>
         <ContentContainer>
-          {window.innerWidth <= 380 ? (
+          {window.innerWidth <= 428 ? (
             <>
               <Sidebar />
               <GameList />

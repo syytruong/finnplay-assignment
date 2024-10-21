@@ -24,11 +24,11 @@ const Filters: React.FC = () => {
     setColumns,
   } = useFilter();
 
-  const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth > 380);
+  const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth > 428);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsLargeScreen(window.innerWidth > 380);
+      setIsLargeScreen(window.innerWidth > 428);
     };
 
     window.addEventListener('resize', handleResize);

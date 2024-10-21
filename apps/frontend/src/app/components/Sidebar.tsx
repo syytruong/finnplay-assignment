@@ -40,7 +40,7 @@ const Sidebar: React.FC = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth > 380) {
+      if (window.innerWidth > 428) {
         setShowFilters(true);
       } else {
         setShowFilters(false);
@@ -64,7 +64,7 @@ const Sidebar: React.FC = () => {
           <FilterFooter />
         </>
       )}
-      {window.innerWidth <= 380 && (
+      {window.innerWidth <= 428 && (
         <ShowFiltersLink onClick={() => setShowFilters(!showFilters)}>
           <BsList />
           {showFilters ? 'Hide filters' : 'Show filters'}

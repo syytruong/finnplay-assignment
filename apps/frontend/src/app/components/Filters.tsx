@@ -57,7 +57,6 @@ const Filters: React.FC = () => {
         options={sortOptions}
         selectedOptions={[selectedSortOption]}
         onOptionChange={handleSortOptionChange}
-        isSelectableOnlyOne={true}
       />
     </FiltersContainer>
   );

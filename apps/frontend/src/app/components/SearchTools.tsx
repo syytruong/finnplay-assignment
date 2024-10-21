@@ -35,6 +35,10 @@ const SearchTools: React.FC<SearchToolsProps> = ({ searchTerm, setSearchTerm }) 
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
 
   useEffect(() => {
+    setDebouncedSearchTerm(searchTerm);
+  }, [searchTerm]);
+
+  useEffect(() => {
     const handler = setTimeout(() => {
       setSearchTerm(debouncedSearchTerm);
     }, 1000);

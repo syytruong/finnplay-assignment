@@ -1,9 +1,9 @@
-import { ReactNode } from 'react';
+import { ReactNode, ButtonHTMLAttributes } from 'react';
 import styled from 'styled-components';
 
 type ButtonType = {
   children: ReactNode;
-};
+} & ButtonHTMLAttributes<HTMLButtonElement>;
 
 const ButtonContainer = styled.button`
   height: 42px;
@@ -19,7 +19,7 @@ const ButtonContainer = styled.button`
   &:hover,
   &:active {
     color: #2b2b2b;
-    box-shadow: 0px 0px 4px 0px #8080800F;
+    box-shadow: 0px 0px 4px 0px #8080800f;
   }
 
   &:active {

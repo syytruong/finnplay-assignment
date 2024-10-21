@@ -23,7 +23,7 @@ const FilterFooter: React.FC<FooterProps> = ({ gamesAmount }) => {
   return (
     <FooterContainer>
       <Text className="filter-headers">Game amount: {gamesAmount}</Text>
-      <Button onClick={() => resetFilters}>Reset</Button>
+      <Button onClick={resetFilters}>Reset</Button>
     </FooterContainer>
   );
 };

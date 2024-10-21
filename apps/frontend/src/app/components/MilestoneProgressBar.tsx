@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { COLORS } from '../constants';
 
 const ProgressContainer = styled.div`
   position: relative;
@@ -14,7 +15,7 @@ const ProgressBar = styled.div<{ width: number }>`
   top: 0;
   left: 0;
   height: 100%;
-  background-color: #ffbc0c;
+  background-color: ${COLORS.primary};
   width: ${({ width }) => width}%;
   transition: width 0.3s ease;
 `;
@@ -25,7 +26,7 @@ const Milestone = styled.div<{ left: number; active: boolean }>`
   height: 30px;
   width: 30px;
   border-radius: 50%;
-  background-color: ${({ active }) => (active ? '#ffbc0c' : 'transparent')};
+  background-color: ${({ active }) => (active ? COLORS.primary : 'transparent')};
   left: ${({ left }) => left}%;
   display: flex;
   align-items: center;
@@ -34,7 +35,7 @@ const Milestone = styled.div<{ left: number; active: boolean }>`
   z-index: 1;
 
   &:hover {
-    background-color: ${({ active }) => (active ? '#ffbc0c' : '#f0f0f0')};
+    background-color: ${({ active }) => (active ? COLORS.primary : COLORS.lightGray)};
   }
 `;
 

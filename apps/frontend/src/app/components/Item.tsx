@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Logo from './Logo';
 import { FaPen, FaTimes } from 'react-icons/fa';
+import { COLORS } from '../constants';
 
 const ItemContainer = styled.div`
   display: flex;
@@ -32,12 +33,12 @@ const Button = styled.button`
   font-size: 14px;
   cursor: pointer;
   border: none;
-  background-color: #007bff;
+  background-color: ${COLORS.blue};
   color: white;
   border-radius: 3px;
 
   &:hover {
-    background-color: #0056b3;
+    background-color: ${COLORS.buttonHover};
   }
 
   & + & {

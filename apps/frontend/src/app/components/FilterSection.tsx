@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import MilestoneProgressBar from './MilestoneProgressBar';
+import { COLORS } from '../constants';
 
 const SectionContainer = styled.div`
   display: flex;
@@ -26,14 +28,14 @@ const Option = styled.span<{ selected: boolean; isProgressBar?: boolean }>`
   gap: 8px;
   padding: 4px 8px;
   border-radius: 8px;
-  background-color: ${({ selected }) => (selected ? 'yellow' : 'transparent')};
+  background-color: ${({ selected }) => (selected ? COLORS.primary : 'transparent')};
   cursor: pointer;
   user-select: none;
-  flex: ${({ isProgressBar }) => (isProgressBar ? '1' : 'auto')};
   text-align: center;
+  font-bolder: 200;
 
   &:hover {
-    background-color: ${({ selected }) => (selected ? 'yellow' : '#f0f0f0')};
+    background-color: ${({ selected }) => (selected ? COLORS.primary : COLORS.lightGray)};
   }
 `;
 
@@ -49,18 +51,26 @@ const FilterSection: React.FC<FilterSectionProps> = ({ title, options, selectedO
   return (
     <SectionContainer>
       <SectionHeader className="filter-headers">{title}</SectionHeader>
-      <OptionsContainer isProgressBar={isProgressBar}>
-        {options.map(option => (
-          <Option
-            key={option}
-            selected={selectedOptions.includes(option)}
-            onClick={() => onOptionChange(option)}
-            isProgressBar={isProgressBar}
-          >
-            {option}
-          </Option>
-        ))}
-      </OptionsContainer>
+      {isProgressBar ? (
+        <MilestoneProgressBar
+          milestones={options.map(Number)}
+          currentMilestone={Number(selectedOptions[0])}
+          onMilestoneClick={(milestone) => onOptionChange(milestone.toString())}
+        />
+      ) : (
+        <OptionsContainer isProgressBar={isProgressBar}>
+          {options.map(option => (
+            <Option
+              key={option}
+              selected={selectedOptions.includes(option)}
+              onClick={() => onOptionChange(option)}
+              isProgressBar={isProgressBar}
+            >
+              {option}
+            </Option>
+          ))}
+        </OptionsContainer>
+      )}
     </SectionContainer>
   );
 };

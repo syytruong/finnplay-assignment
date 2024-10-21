@@ -5,13 +5,14 @@ import axios from 'axios';
 import logo from '../../assets/img/logo.png';
 import { FaRegUserCircle } from "react-icons/fa";
 import { useAuth } from '../AuthContext';
+import { COLORS } from '../constants';
 
 const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 80px;
-  box-shadow: 0px -2px 18px 0px #8080801a;
+  box-shadow: 0px -2px 18px 0px ${COLORS.shadow};
 
   @media (max-width: 380px) {
     padding: 10px 20px;
@@ -26,7 +27,7 @@ const ProfileContainer = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
-  color: #d03282;
+  color: ${COLORS.secondary};
 `;
 
 const LogoutText = styled.span`

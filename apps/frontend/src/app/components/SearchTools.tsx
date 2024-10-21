@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { CiSearch } from "react-icons/ci";
 import { useFilter } from '../context/FilterContext';
+import { COLORS } from '../constants';
 
 const SearchToolsContainer = styled.div`
   width: 100%;
@@ -10,7 +11,7 @@ const SearchToolsContainer = styled.div`
   padding: 0 16px;
   display: flex;
   gap: 16px;
-  border: 1px solid #f2f2f2;
+  border: 1px solid ${COLORS.lightGray};
   align-items: center;
   background-color: #fff;
 

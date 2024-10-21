@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
 import logo from '../../assets/img/logo.png';
+import { COLORS } from '../constants';
 
 const LoginContainer = styled.div`
   display: flex;
@@ -27,7 +28,7 @@ const LoginContainer = styled.div`
     }
   }
 
-  @media (max-width: 428px) {
+  @media (max-width: 380px) {
     .login-form {
       width: calc(100% - 48px);
     }
@@ -42,7 +43,7 @@ const Logo = styled.img`
 const Input = styled.input`
   height: 64px;
   border-radius: 4px;
-  border: 1px solid #f2f2f2;
+  border: 1px solid ${COLORS.lightGray};
   padding: 16px;
   display: flex;
   justify-content: center;
@@ -56,16 +57,16 @@ const Button = styled.button`
   height: 64px;
   cursor: pointer;
   width: 100%;
-  background-color: #fdbc11;
+  background-color: ${COLORS.primary};
   border-radius: 4px;
-  box-shadow: 0px -2px 18px 0px #8080801a;
+  box-shadow: 0px -2px 18px 0px ${COLORS.shadow};
   font-size: 16px;
   font-weight: 400;
   line-height: 19px;
 `;
 
 const ErrorMessage = styled.div`
-  color: red;
+  color: ${COLORS.error};
   padding: 10px;
   height: 39px;
   font-size: 16px;

@@ -4,6 +4,7 @@ import SearchTools from './SearchTools';
 import Filters from './Filters';
 import FilterFooter from './FilterFooter';
 import { BsList } from 'react-icons/bs';
+import { COLORS } from '../constants';
 
 const SidebarContainer = styled.div`
   display: flex;
@@ -11,7 +12,7 @@ const SidebarContainer = styled.div`
   flex: 1;
   padding: 32px;
   gap: 32px;
-  border: 1px solid #f2f2f2;
+  border: 1px solid ${COLORS.lightGray};
   border-radius: 8px;
 
   @media (max-width: 380px) {
@@ -30,7 +31,7 @@ const ShowFiltersLink = styled.a`
   cursor: pointer;
 
   &:hover {
-    color: darkblue;
+    color: ${COLORS.darkBlue};
   }
 `;
 

@@ -54,26 +54,27 @@ app.get('/api/check-session', (req: Request, res: Response) => {
 });
 
 app.get('/api/games', (req: Request, res: Response) => {
-  const { name, providers, groups } = req.query as {
-    name?: string;
-    providers?: string | string[];
-    groups?: string | string[];
+  const { search, providers, groups } = req.query as {
+    search?: string;
+    providers?: string[];
+    groups?: string[];
   };
 
   let filteredGames = games;
 
-  if (name) {
-    filteredGames = filteredGames.filter(game => game.name.includes(name));
+  console.log('search', search);
+
+  if (search) {
+    const searchLower = search.toLowerCase();
+    filteredGames = filteredGames.filter(game => game.name.toLowerCase().includes(searchLower));
   }
 
   if (providers) {
-    const providerList = Array.isArray(providers) ? providers : [providers];
-    filteredGames = filteredGames.filter(game => providerList.includes(game.provider));
+    filteredGames = filteredGames.filter(game => providers.includes(game.provider));
   }
 
   if (groups) {
-    const groupList = Array.isArray(groups) ? groups : [groups];
-    filteredGames = filteredGames.filter(game => game.groups.some(group => groupList.includes(group)));
+    filteredGames = filteredGames.filter(game => game.groups.some(group => groups.includes(group)));
   }
 
   // Filter out games that don't belong to any group

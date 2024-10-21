@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Filters from './Filters';
 import SearchTools from './SearchTools';
 import FilterFooter from './FilterFooter';
+import ColumnsSelector from './ColumnsSelector';
 
 const SidebarContainer = styled.div`
   display: flex;
@@ -20,6 +21,7 @@ const Sidebar: React.FC = () => {
     <SidebarContainer>
       <SearchTools />
       <Filters />
+      <ColumnsSelector />
       <FilterFooter />
     </SidebarContainer>
   );

@@ -8,7 +8,8 @@ interface FilterContextType {
   selectedGroups: string[];
   setSelectedGroups: (groups: string[]) => void;
   sortOptions: string[];
-  setSortOptions: (options: string[]) => void;
+  selectedSortOptions: string;
+  setSelectedSortOptions: (options: string) => void;
   resetFilters: () => void;
 }
 
@@ -18,13 +19,14 @@ export const FilterProvider: React.FC<{ children: ReactNode }> = ({ children }) 
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedProviders, setSelectedProviders] = useState<string[]>([]);
   const [selectedGroups, setSelectedGroups] = useState<string[]>([]);
-  const [sortOptions, setSortOptions] = useState<string[]>([]);
+  const [selectedSortOptions, setSelectedSortOptions] = useState<string>('');
+  const sortOptions = ['A-Z', 'Z-A', 'Newest'];
 
   const resetFilters = () => {
     setSearchTerm('');
     setSelectedProviders([]);
     setSelectedGroups([]);
-    setSortOptions([]);
+    setSelectedSortOptions('');
   };
 
   return (
@@ -37,7 +39,8 @@ export const FilterProvider: React.FC<{ children: ReactNode }> = ({ children }) 
         selectedGroups,
         setSelectedGroups,
         sortOptions,
-        setSortOptions,
+        selectedSortOptions,
+        setSelectedSortOptions,
         resetFilters,
       }}
     >

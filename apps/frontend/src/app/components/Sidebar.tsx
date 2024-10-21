@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import SearchTools from './SearchTools';
 import Filters from './Filters';
 import FilterFooter from './FilterFooter';
-import ColumnsSelector from './ColumnsSelector';
 import { BsList } from 'react-icons/bs';
 
 const SidebarContainer = styled.div`
@@ -61,7 +60,6 @@ const Sidebar: React.FC = () => {
       {showFilters && (
         <>
           <Filters />
-          {window.innerWidth > 380 && <ColumnsSelector />}
           <FilterFooter />
         </>
       )}

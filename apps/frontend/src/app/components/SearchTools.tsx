@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { ReactComponent as IconSearch } from '@/assets/icons/search.svg';
 
@@ -32,8 +32,20 @@ interface SearchToolsProps {
 }
 
 const SearchTools: React.FC<SearchToolsProps> = ({ searchTerm, setSearchTerm }) => {
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setSearchTerm(debouncedSearchTerm);
+    }, 1000);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [debouncedSearchTerm, setSearchTerm]);
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value);
+    setDebouncedSearchTerm(e.target.value);
   };
 
   return (
@@ -41,7 +53,7 @@ const SearchTools: React.FC<SearchToolsProps> = ({ searchTerm, setSearchTerm }) 
       <input
         type="text"
         placeholder="Search"
-        value={searchTerm}
+        value={debouncedSearchTerm}
         onChange={handleInputChange}
       />
       <IconSearch />

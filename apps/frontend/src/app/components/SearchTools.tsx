@@ -15,7 +15,7 @@ const SearchToolsContainer = styled.div`
   align-items: center;
   background-color: #fff;
 
-  @media (max-width: 380px) {
+  @media (max-width: 428px) {
     height: 48px;
     padding: 0 8px;
   }
@@ -31,7 +31,7 @@ const SearchToolsContainer = styled.div`
       outline: 0;
     }
 
-    @media (max-width: 380px) {
+    @media (max-width: 428px) {
       height: 20px;
       line-height: 20px;
     }
@@ -42,7 +42,7 @@ const SearchToolsContainer = styled.div`
     width: 24px;
     height: 24px;
 
-    @media (max-width: 380px) {
+    @media (max-width: 428px) {
       margin-left: -25px;
     }
   }

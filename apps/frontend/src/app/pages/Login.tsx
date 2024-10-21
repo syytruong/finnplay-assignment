@@ -28,7 +28,7 @@ const LoginContainer = styled.div`
     }
   }
 
-  @media (max-width: 380px) {
+  @media (max-width: 428px) {
     .login-form {
       width: calc(100% - 48px);
     }

@@ -14,7 +14,7 @@ const HeaderContainer = styled.div`
   padding: 10px 80px;
   box-shadow: 0px -2px 18px 0px ${COLORS.shadow};
 
-  @media (max-width: 380px) {
+  @media (max-width: 428px) {
     padding: 10px 20px;
   }
 `;

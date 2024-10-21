@@ -15,7 +15,7 @@ const SidebarContainer = styled.div`
   border: 1px solid ${COLORS.lightGray};
   border-radius: 8px;
 
-  @media (max-width: 380px) {
+  @media (max-width: 428px) {
     padding: 20px;
   }
 `;

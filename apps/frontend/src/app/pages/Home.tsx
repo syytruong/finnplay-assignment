@@ -23,7 +23,7 @@ const HomeContainer = styled.div`
   padding: 75px 80px;
   height: calc(100% - 60px);
 
-  @media (max-width: 380px) {
+  @media (max-width: 428px) {
     flex-direction: column;
     padding: 20px;
   }
@@ -35,7 +35,7 @@ const ContentContainer = styled.div`
   max-width: 1440px;
   gap: 20px;
 
-  @media (max-width: 380px) {
+  @media (max-width: 428px) {
     flex-direction: column;
     gap: 10px;
     height: auto;

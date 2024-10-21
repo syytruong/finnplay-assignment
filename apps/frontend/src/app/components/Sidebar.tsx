@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Button from './Button';
-import Filter from './Filter';
+import Filters from './Filters';
 import SearchTools from './SearchTools';
 import { useFilter } from '../context/FilterContext';
 import FilterFooter from './FilterFooter';
@@ -28,7 +27,7 @@ const Sidebar: React.FC<SidebarProps> = ({ providers, groups, gamesAmount }) => 
   return (
     <SidebarContainer>
       <SearchTools searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-      <Filter>Filter</Filter>
+      <Filters>Filter</Filters>
       <FilterFooter gamesAmount={gamesAmount ?? 0} />
     </SidebarContainer>
   );

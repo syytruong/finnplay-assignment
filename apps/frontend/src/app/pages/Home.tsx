@@ -4,6 +4,7 @@ import axios from 'axios';
 import Header from '../components/Header';
 import GameList from '../components/GameList';
 import Sidebar from '../components/Sidebar';
+import { useFilter } from '../context/FilterContext';
 import game1 from '../../assets/images/game-thumbnail-1.png';
 import game11 from '../../assets/images/game-thumbnail-1-1.png';
 import game12 from '../../assets/images/game-thumbnail-1-2.png';
@@ -42,9 +43,7 @@ const Home: React.FC = () => {
   const [games, setGames] = useState<Game[]>([]);
   const [providers, setProviders] = useState<string[]>([]);
   const [gameGroups, setGameGroups] = useState<string[]>([]);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedGroup, setSelectedGroup] = useState<string | null>(null);
-  const [selectedProvider, setSelectedProvider] = useState<string | null>(null);
+  const { searchTerm, selectedProviders, selectedGroups } = useFilter();
   const images = [
     game1,
     game11,
@@ -58,7 +57,6 @@ const Home: React.FC = () => {
     game24,
   ];
 
-  // Fetch providers and groups only once
   useEffect(() => {
     const fetchProvidersAndGroups = async () => {
       try {
@@ -86,15 +84,14 @@ const Home: React.FC = () => {
     fetchProvidersAndGroups();
   }, []);
 
-  // Fetch games based on search term, selected group, and selected provider
   useEffect(() => {
     const fetchGames = async () => {
       try {
         const response = await axios.get('/api/games', {
           params: {
             search: searchTerm,
-            group: selectedGroup,
-            provider: selectedProvider,
+            group: selectedGroups.join(','),
+            provider: selectedProviders.join(','),
           },
         });
 
@@ -110,7 +107,7 @@ const Home: React.FC = () => {
     };
 
     fetchGames();
-  }, [searchTerm, selectedGroup, selectedProvider]);
+  }, [searchTerm, selectedGroups, selectedProviders]);
 
   return (
     <>

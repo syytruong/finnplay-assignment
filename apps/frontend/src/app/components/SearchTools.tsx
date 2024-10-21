@@ -26,10 +26,24 @@ const SearchToolsContainer = styled.div`
   }
 `;
 
-const SearchTools: React.FC = () => {
+interface SearchToolsProps {
+  searchTerm: string;
+  setSearchTerm: (term: string) => void;
+}
+
+const SearchTools: React.FC<SearchToolsProps> = ({ searchTerm, setSearchTerm }) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+  };
+
   return (
     <SearchToolsContainer>
-      <input type="text" placeholder="Search" />
+      <input
+        type="text"
+        placeholder="Search"
+        value={searchTerm}
+        onChange={handleInputChange}
+      />
       <IconSearch />
     </SearchToolsContainer>
   );

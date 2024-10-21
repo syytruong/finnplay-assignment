@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Button from './Button';
 import Filter from './Filter';
 import SearchTools from './SearchTools';
+import { useFilter } from '../context/FilterContext';
 
 const SidebarContainer = styled.div`
   display: flex;
@@ -20,9 +21,11 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ providers, groups }) => {
+  const { searchTerm, setSearchTerm, selectedProviders, setSelectedProviders, selectedGroups, setSelectedGroups } = useFilter();
+
   return (
     <SidebarContainer>
-      <SearchTools />
+      <SearchTools searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <Filter>Filter</Filter>
       <Button>Reset</Button>
     </SidebarContainer>

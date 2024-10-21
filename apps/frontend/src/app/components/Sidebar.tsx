@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import Filters from './Filters';
 import SearchTools from './SearchTools';
-import { useFilter } from '../context/FilterContext';
 import FilterFooter from './FilterFooter';
 
 const SidebarContainer = styled.div`
@@ -15,20 +14,13 @@ const SidebarContainer = styled.div`
   border-radius: 8px;
 `;
 
-interface SidebarProps {
-  providers: string[];
-  groups: string[];
-  gamesAmount: number;
-}
 
-const Sidebar: React.FC<SidebarProps> = ({ providers, groups, gamesAmount }) => {
-  const { searchTerm, setSearchTerm, selectedProviders, setSelectedProviders, selectedGroups, setSelectedGroups, sortOptions, setSortOptions } = useFilter();
-
+const Sidebar: React.FC = () => {
   return (
     <SidebarContainer>
-      <SearchTools searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-      <Filters>Filter</Filters>
-      <FilterFooter gamesAmount={gamesAmount ?? 0} />
+      <SearchTools />
+      <Filters />
+      <FilterFooter />
     </SidebarContainer>
   );
 };

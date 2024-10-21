@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
 import Logo from './Logo';
+import { useFilter } from '../context/FilterContext';
 
 const GamesContainer = styled.div<{ columns: number }>`
   flex: 2;
@@ -38,18 +38,9 @@ const GameName = styled.div`
   cursor: pointer;
 `;
 
-interface Game {
-  id: number;
-  name: string;
-  logo: string;
-}
+const GameList: React.FC = () => {
+  const { games, columns } = useFilter();
 
-interface GameListProps {
-  columns: number;
-  games: Game[];
-}
-
-const GameList: React.FC<GameListProps> = ({ columns, games }) => {
   return (
     <GamesContainer columns={columns}>
       {games.map((game) => (

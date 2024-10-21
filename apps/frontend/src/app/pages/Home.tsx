@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import Header from '../components/Header';
 import GameList from '../components/GameList';
 import Sidebar from '../components/Sidebar';
 import { useFilter } from '../context/FilterContext';
+import { Game } from '../types';
 import game1 from '../../assets/images/game-thumbnail-1.png';
 import game11 from '../../assets/images/game-thumbnail-1-1.png';
 import game12 from '../../assets/images/game-thumbnail-1-2.png';
@@ -15,14 +16,6 @@ import game21 from '../../assets/images/game-thumbnail-2-1.png';
 import game22 from '../../assets/images/game-thumbnail-2-2.png';
 import game23 from '../../assets/images/game-thumbnail-2-3.png';
 import game24 from '../../assets/images/game-thumbnail-2-4.png';
-
-interface Game {
-  id: number;
-  name: string;
-  provider: string;
-  groups: string[];
-  logo: string;
-}
 
 const HomeContainer = styled.div`
   display: flex;
@@ -39,11 +32,8 @@ const ContentContainer = styled.div`
 `;
 
 const Home: React.FC = () => {
-  const [columns, setColumns] = useState(4);
-  const [games, setGames] = useState<Game[]>([]);
-  const [providers, setProviders] = useState<string[]>([]);
-  const [gameGroups, setGameGroups] = useState<string[]>([]);
-  const { searchTerm, selectedProviders, selectedGroups } = useFilter();
+  const { setGameAmount, setGames } = useFilter();
+  const { searchTerm, selectedProviders, selectedGroups, setProviders, setGroups } = useFilter();
   const images = [
     game1,
     game11,
@@ -75,7 +65,7 @@ const Home: React.FC = () => {
         const groups = Array.from(groupsSet);
 
         setProviders(providers);
-        setGameGroups(groups);
+        setGroups(groups);
       } catch (err) {
         console.error('Failed to fetch providers and groups', err);
       }
@@ -101,6 +91,7 @@ const Home: React.FC = () => {
         }));
 
         setGames(gamesWithImages);
+        setGameAmount(gamesWithImages.length);
       } catch (err) {
         console.error('Failed to fetch games', err);
       }
@@ -114,8 +105,8 @@ const Home: React.FC = () => {
       <Header />
       <HomeContainer>
         <ContentContainer>
-          <GameList columns={columns} games={games} />
-          <Sidebar providers={providers} groups={gameGroups} gamesAmount={games.length} />
+          <GameList />
+          <Sidebar />
         </ContentContainer>
       </HomeContainer>
     </>

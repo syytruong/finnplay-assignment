@@ -13,16 +13,13 @@ const Text = styled.span`
   font-size: 14px;
 `;
 
-interface FooterProps {
-  gamesAmount: number;
-}
 
-const FilterFooter: React.FC<FooterProps> = ({ gamesAmount }) => {
-  const { resetFilters } = useFilter();
+const FilterFooter: React.FC = () => {
+  const { resetFilters, gameAmount } = useFilter();
 
   return (
     <FooterContainer>
-      <Text className="filter-headers">Game amount: {gamesAmount}</Text>
+      <Text className="filter-headers">Game amount: {gameAmount}</Text>
       <Button onClick={resetFilters}>Reset</Button>
     </FooterContainer>
   );

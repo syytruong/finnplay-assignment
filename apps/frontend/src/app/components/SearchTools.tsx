@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { ReactComponent as IconSearch } from '@/assets/icons/search.svg';
+import { useFilter } from '../context/FilterContext';
 
 const SearchToolsContainer = styled.div`
   width: 100%;
@@ -26,12 +27,9 @@ const SearchToolsContainer = styled.div`
   }
 `;
 
-interface SearchToolsProps {
-  searchTerm: string;
-  setSearchTerm: (term: string) => void;
-}
 
-const SearchTools: React.FC<SearchToolsProps> = ({ searchTerm, setSearchTerm }) => {
+const SearchTools: React.FC = () => {
+  const { searchTerm, setSearchTerm } = useFilter();
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
 
   useEffect(() => {

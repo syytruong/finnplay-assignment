@@ -20,18 +20,18 @@ const SidebarContainer = styled.div`
   }
 `;
 
-const ShowFiltersButton = styled.button`
+const ShowFiltersLink = styled.a`
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
-  padding: 8px 16px;
-  border: none;
-  background-color: #f2f2f2;
-  border-radius: 8px;
+  padding: 8px 0;
+  color: blue;
+  text-decoration: none;
   cursor: pointer;
 
   &:hover {
-    background-color: #e0e0e0;
+    color: darkblue;
   }
 `;
 
@@ -48,7 +48,7 @@ const Sidebar: React.FC = () => {
     };
 
     window.addEventListener('resize', handleResize);
-    handleResize(); // Set initial value
+    handleResize();
 
     return () => {
       window.removeEventListener('resize', handleResize);
@@ -58,18 +58,18 @@ const Sidebar: React.FC = () => {
   return (
     <SidebarContainer>
       <SearchTools />
-      {window.innerWidth <= 380 && (
-        <ShowFiltersButton onClick={() => setShowFilters(!showFilters)}>
-          <BsList />
-          Show filters
-        </ShowFiltersButton>
-      )}
       {showFilters && (
         <>
           {window.innerWidth > 380 && <ColumnsSelector />}
           <Filters />
           <FilterFooter />
         </>
+      )}
+      {window.innerWidth <= 380 && (
+        <ShowFiltersLink onClick={() => setShowFilters(!showFilters)}>
+          <BsList />
+          {showFilters ? 'Hide filters' : 'Show filters'}
+        </ShowFiltersLink>
       )}
     </SidebarContainer>
   );

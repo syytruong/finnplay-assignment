@@ -21,17 +21,21 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   button {
-  all: unset;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  background: none;
-  border: none;
-  font: inherit;
-  text-decoration: none;
-  color: inherit;
-  line-height: inherit;
-}
+    all: unset;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font: inherit;
+    text-decoration: none;
+    color: inherit;
+    line-height: inherit;
+  }
+
+  .filter-headers {
+    color: #908d8d;
+  }
 
 `

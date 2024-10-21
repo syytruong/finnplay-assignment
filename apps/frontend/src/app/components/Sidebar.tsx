@@ -4,6 +4,7 @@ import Button from './Button';
 import Filter from './Filter';
 import SearchTools from './SearchTools';
 import { useFilter } from '../context/FilterContext';
+import FilterFooter from './FilterFooter';
 
 const SidebarContainer = styled.div`
   display: flex;
@@ -18,16 +19,17 @@ const SidebarContainer = styled.div`
 interface SidebarProps {
   providers: string[];
   groups: string[];
+  gamesAmount: number;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ providers, groups }) => {
-  const { searchTerm, setSearchTerm, selectedProviders, setSelectedProviders, selectedGroups, setSelectedGroups } = useFilter();
+const Sidebar: React.FC<SidebarProps> = ({ providers, groups, gamesAmount }) => {
+  const { searchTerm, setSearchTerm, selectedProviders, setSelectedProviders, selectedGroups, setSelectedGroups, sortOptions, setSortOptions } = useFilter();
 
   return (
     <SidebarContainer>
       <SearchTools searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <Filter>Filter</Filter>
-      <Button>Reset</Button>
+      <FilterFooter gamesAmount={gamesAmount ?? 0} />
     </SidebarContainer>
   );
 };

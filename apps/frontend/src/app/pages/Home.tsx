@@ -115,7 +115,7 @@ const Home: React.FC = () => {
       <HomeContainer>
         <ContentContainer>
           <GameList columns={columns} games={games} />
-          <Sidebar providers={providers} groups={gameGroups} />
+          <Sidebar providers={providers} groups={gameGroups} gamesAmount={games.length} />
         </ContentContainer>
       </HomeContainer>
     </>

@@ -7,6 +7,9 @@ interface FilterContextType {
   setSelectedProviders: (providers: string[]) => void;
   selectedGroups: string[];
   setSelectedGroups: (groups: string[]) => void;
+  sortOptions: string[];
+  setSortOptions: (options: string[]) => void;
+  resetFilters: () => void;
 }
 
 const FilterContext = createContext<FilterContextType | undefined>(undefined);
@@ -15,6 +18,14 @@ export const FilterProvider: React.FC<{ children: ReactNode }> = ({ children }) 
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedProviders, setSelectedProviders] = useState<string[]>([]);
   const [selectedGroups, setSelectedGroups] = useState<string[]>([]);
+  const [sortOptions, setSortOptions] = useState<string[]>([]);
+
+  const resetFilters = () => {
+    setSearchTerm('');
+    setSelectedProviders([]);
+    setSelectedGroups([]);
+    setSortOptions([]);
+  };
 
   return (
     <FilterContext.Provider
@@ -25,6 +36,9 @@ export const FilterProvider: React.FC<{ children: ReactNode }> = ({ children }) 
         setSelectedProviders,
         selectedGroups,
         setSelectedGroups,
+        sortOptions,
+        setSortOptions,
+        resetFilters,
       }}
     >
       {children}

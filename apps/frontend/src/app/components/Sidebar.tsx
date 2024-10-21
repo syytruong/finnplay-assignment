@@ -14,7 +14,12 @@ const SidebarContainer = styled.div`
   border-radius: 8px;
 `;
 
-const Sidebar: React.FC = () => {
+interface SidebarProps {
+  providers: string[];
+  groups: string[];
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ providers, groups }) => {
   return (
     <SidebarContainer>
       <SearchTools />

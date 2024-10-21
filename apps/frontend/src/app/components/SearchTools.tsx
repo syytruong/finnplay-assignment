@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { ReactComponent as IconSearch } from '@/assets/icons/search.svg';
+import { CiSearch } from "react-icons/ci";
 import { useFilter } from '../context/FilterContext';
 
 const SearchToolsContainer = styled.div`
@@ -58,7 +58,7 @@ const SearchTools: React.FC = () => {
         value={debouncedSearchTerm}
         onChange={handleInputChange}
       />
-      <IconSearch />
+      <CiSearch />
     </SearchToolsContainer>
   );
 };

@@ -10,7 +10,6 @@ const GamesContainer = styled.div<{ columns: number }>`
   gap: 20px;
   height: fit-content;
   max-height: 100%;
-  overflow: auto;
 `;
 
 const GameItem = styled.div`

@@ -22,6 +22,11 @@ const HomeContainer = styled.div`
   justify-content: center;
   padding: 75px 80px;
   height: calc(100% - 60px);
+
+  @media (max-width: 380px) {
+    flex-direction: column;
+    padding: 20px;
+  }
 `;
 
 const ContentContainer = styled.div`
@@ -29,6 +34,13 @@ const ContentContainer = styled.div`
   width: 100%;
   max-width: 1440px;
   gap: 20px;
+
+  @media (max-width: 380px) {
+    flex-direction: column;
+    gap: 10px;
+    height: auto;
+    overflow-y: scroll;
+  }
 `;
 
 const Home: React.FC = () => {
@@ -41,6 +53,7 @@ const Home: React.FC = () => {
     setProviders,
     setGroups,
     selectedSortOption,
+    setColumns,
   } = useFilter();
 
   const images = [
@@ -110,13 +123,37 @@ const Home: React.FC = () => {
     fetchGames();
   }, [searchTerm, selectedGroups, selectedProviders, selectedSortOption]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 380) {
+        setColumns(2);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [setColumns]);
+
   return (
     <>
       <Header />
       <HomeContainer>
         <ContentContainer>
-          <GameList />
-          <Sidebar />
+          {window.innerWidth <= 380 ? (
+            <>
+              <Sidebar />
+              <GameList />
+            </>
+          ) : (
+            <>
+              <GameList />
+              <Sidebar />
+            </>
+          )}
         </ContentContainer>
       </HomeContainer>
     </>

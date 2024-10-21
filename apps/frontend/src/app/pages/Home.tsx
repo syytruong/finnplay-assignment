@@ -127,6 +127,8 @@ const Home: React.FC = () => {
     const handleResize = () => {
       if (window.innerWidth <= 380) {
         setColumns(2);
+      } else {
+        setColumns(4);
       }
     };
 
